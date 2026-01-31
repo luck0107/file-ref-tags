@@ -15,7 +15,7 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="org.jetbrains.plugins.template.toolWindow.MyToolWindowFactory" id="FileRefTags" displayName="File Ref Tags" anchor="left" icon="/META-INF/icon.svg"/>
+        <toolWindow factoryClass="com.github.luck0107.filereftags.toolWindow.MyToolWindowFactory" id="FileRefTags" displayName="File Ref Tags" anchor="left" icon="/META-INF/icon.svg"/>
         <notificationGroup id="FileRefTags.NotificationGroup" displayType="BALLOON"/>
     </extensions>
 
@@ -23,21 +23,21 @@
         <!-- Editor context menu -->
         <group id="FileRefTags.EditorContextMenu" text="File Ref Tags" popup="true">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-            <action id="FileRefTags.AddCurrentFile" class="org.jetbrains.plugins.template.actions.AddCurrentFileAction" text="Add Current File to Panel"/>
-            <action id="FileRefTags.AddFileAndSnippet" class="org.jetbrains.plugins.template.actions.AddFileAndSnippetAction" text="Add Current File + Selected Snippet to Panel"/>
-            <action id="FileRefTags.AddGlobalUniqueSnippet" class="org.jetbrains.plugins.template.actions.AddGlobalUniqueSnippetAction" text="Add Global Unique Snippet to Panel"/>
-            <action id="FileRefTags.AddComment" class="org.jetbrains.plugins.template.actions.AddCommentAction" text="Add Comment to Panel"/>
+            <action id="FileRefTags.AddCurrentFile" class="com.github.luck0107.filereftags.actions.AddCurrentFileAction" text="Add Current File to Panel"/>
+            <action id="FileRefTags.AddFileAndSnippet" class="com.github.luck0107.filereftags.actions.AddFileAndSnippetAction" text="Add Current File + Selected Snippet to Panel"/>
+            <action id="FileRefTags.AddGlobalUniqueSnippet" class="com.github.luck0107.filereftags.actions.AddGlobalUniqueSnippetAction" text="Add Global Unique Snippet to Panel"/>
+            <action id="FileRefTags.AddComment" class="com.github.luck0107.filereftags.actions.AddCommentAction" text="Add Comment to Panel"/>
         </group>
         
         <!-- Tool window title bar actions -->
-        <action id="FileRefTags.TitleActions.Refresh" icon="AllIcons.Actions.Refresh" class="org.jetbrains.plugins.template.actions.RefreshReferencesAction"/>
+        <action id="FileRefTags.TitleActions.Refresh" icon="AllIcons.Actions.Refresh" class="com.github.luck0107.filereftags.actions.RefreshReferencesAction"/>
         
         <!-- Tool window toolbar actions -->
         <group id="FileRefTags.ToolWindowToolbar" text="File Ref Tags" popup="false">
-            <action id="FileRefTags.RefreshReferences" class="org.jetbrains.plugins.template.actions.RefreshReferencesAction" text="Refresh References"/>
+            <action id="FileRefTags.RefreshReferences" class="com.github.luck0107.filereftags.actions.RefreshReferencesAction" text="Refresh References"/>
             <separator/>
-            <action id="FileRefTags.AddGroup" class="org.jetbrains.plugins.template.actions.AddGroupAction" text="Add Group"/>
-            <action id="FileRefTags.ShowStorageLocation" class="org.jetbrains.plugins.template.actions.ShowStorageLocationAction" text="Show Storage Location"/>
+            <action id="FileRefTags.AddGroup" class="com.github.luck0107.filereftags.actions.AddGroupAction" text="Add Group"/>
+            <action id="FileRefTags.ShowStorageLocation" class="com.github.luck0107.filereftags.actions.ShowStorageLocationAction" text="Show Storage Location"/>
         </group>
     </actions>
 </idea-plugin>

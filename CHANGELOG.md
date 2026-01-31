@@ -1,37 +1,7 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-# File Ref Tags Changelog
+# file-ref-tags Changelog
 
 ## [Unreleased]
-
-## [1.0.0] - 2025-01-22
-
 ### Added
-
-- 初始版本（JetBrains IDE 版本）
-- **核心功能**
-  - 添加当前文件到引用面板
-  - 添加当前文件+选中的代码片段到引用面板
-  - 添加当前选中的全局唯一片段到引用面板
-  - 添加用户注释到引用面板
-- **分组管理**
-  - 创建分组对引用项进行分类
-  - 拖拽引用项到分组中
-  - 展开/折叠分组
-  - 拖拽调整分组顺序
-- **UI 特性**
-  - 不同类型引用项的颜色区分
-    - 文件：浅黄色背景
-    - 文件+片段：浅绿色背景
-    - 全局片段：浅粉色背景
-    - 注释：浅灰色背景
-    - 分组：浅蓝色背景
-  - 拖拽排序引用项和分组
-  - 右键菜单编辑和删除引用项
-- **导航功能**
-  - 点击引用项快速跳转到对应位置
-  - 层级搜索算法优化全局片段查找
-- **数据管理**
-  - 数据持久化存储
-  - 查看存储位置功能
-  - 自动保存所有更改
+- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
