@@ -1,246 +1,246 @@
-# 开发文档
+# Development Documentation
 
-本文档将指导你如何参与 File Ref Tags 插件的开发。
+This document will guide you on how to contribute to the development of the File Ref Tags plugin.
 
-## 目录
+## Table of Contents
 
-- [开发环境搭建](#开发环境搭建)
-- [项目结构](#项目结构)
-- [核心模块说明](#核心模块说明)
-- [开发流程](#开发流程)
-- [如何添加新功能](#如何添加新功能)
-- [代码规范](#代码规范)
-- [测试](#测试)
-- [构建和打包](#构建和打包)
-- [常见问题](#常见问题)
+- [Development Environment Setup](#development-environment-setup)
+- [Project Structure](#project-structure)
+- [Core Module Overview](#core-module-overview)
+- [Development Workflow](#development-workflow)
+- [How to Add New Features](#how-to-add-new-features)
+- [Code Standards](#code-standards)
+- [Testing](#testing)
+- [Building and Packaging](#building-and-packaging)
+- [Frequently Asked Questions](#frequently-asked-questions)
 
-## 开发环境搭建
+## Development Environment Setup
 
-### 前置要求
+### Prerequisites
 
-- **JDK**: 17 或更高版本
-- **IntelliJ IDEA**: 2023.1 或更高版本（推荐使用最新版本）
-- **Gradle**: 项目已包含 Gradle Wrapper，无需单独安装
-- **Git**: 用于版本控制
+- **JDK**: Version 17 or higher
+- **IntelliJ IDEA**: 2023.1 or higher (recommended to use the latest version)
+- **Gradle**: Project includes Gradle Wrapper, no separate installation needed
+- **Git**: For version control
 
-### 环境配置步骤
+### Environment Setup Steps
 
-1. **克隆项目**
+1. **Clone the project**
    ```bash
    git clone https://github.com/your-username/file-ref-tags.git
    cd file-ref-tags/intellij-platform-plugin-template-main
    ```
 
-2. **打开项目**
-   - 使用 IntelliJ IDEA 打开项目根目录
-   - 等待 Gradle 同步完成
+2. **Open the project**
+   - Open the project root directory in IntelliJ IDEA
+   - Wait for Gradle synchronization to complete
 
-3. **配置 JDK**
-   - 打开 **File** → **Project Structure** → **Project Settings** → **Project**
-   - 设置 **SDK** 为 Java 17 或更高版本
-   - 设置 **Language level** 为 17 或更高
+3. **Configure JDK**
+   - Open **File** → **Project Structure** → **Project Settings** → **Project**
+   - Set **SDK** to Java 17 or higher
+   - Set **Language level** to 17 or higher
 
-4. **验证环境**
+4. **Verify environment**
    ```bash
-   # 运行测试验证环境是否正确
+   # Run tests to verify environment is correct
    ./gradlew test
    
-   # 运行插件验证是否能正常启动
+   # Run plugin to verify it starts normally
    ./gradlew runIde
    ```
 
-## 项目结构
+## Project Structure
 
 ```
 intellij-platform-plugin-template-main/
 ├── src/
 │   ├── main/
 │   │   ├── kotlin/org/jetbrains/plugins/template/
-│   │   │   ├── actions/          # 动作（Action）定义
-│   │   │   │   ├── Actions.kt                    # 动作组定义
-│   │   │   │   ├── AddCurrentFileAction.kt       # 添加当前文件
-│   │   │   │   ├── AddFileAndSnippetAction.kt     # 添加文件和代码片段
-│   │   │   │   ├── AddGlobalUniqueSnippetAction.kt # 添加全局唯一代码片段
-│   │   │   │   ├── AddCommentAction.kt           # 添加注释
-│   │   │   │   ├── AddGroupAction.kt              # 添加分组
-│   │   │   │   ├── DeleteReferenceAction.kt       # 删除引用
-│   │   │   │   ├── EditReferenceTitleAction.kt   # 编辑引用标题
-│   │   │   │   ├── RefreshReferencesAction.kt    # 刷新引用
-│   │   │   │   └── ShowStorageLocationAction.kt   # 显示存储位置
-│   │   │   ├── model/            # 数据模型
-│   │   │   │   ├── ReferenceItem.kt    # 引用项数据模型
-│   │   │   │   └── ReferenceGroup.kt   # 分组数据模型
-│   │   │   ├── services/         # 服务层
-│   │   │   │   └── ReferenceDataService.kt  # 引用数据管理服务
-│   │   │   ├── ui/               # UI 组件
-│   │   │   │   └── ReferenceListPanel.kt     # 引用列表面板
-│   │   │   ├── toolWindow/       # 工具窗口
-│   │   │   │   └── MyToolWindowFactory.kt    # 工具窗口工厂
-│   │   │   ├── utils/            # 工具类
-│   │   │   │   ├── NotificationUtils.kt      # 通知工具
-│   │   │   │   └── ReferenceNavigationUtils.kt # 导航工具
-│   │   │   ├── MyBundle.kt       # 国际化支持
-│   │   │   └── UriHandler.kt     # URI 处理器
+│   │   │   ├── actions/          # Action definitions
+│   │   │   │   ├── Actions.kt                    # Action group definitions
+│   │   │   │   ├── AddCurrentFileAction.kt       # Add current file
+│   │   │   │   ├── AddFileAndSnippetAction.kt     # Add file and code snippet
+│   │   │   │   ├── AddGlobalUniqueSnippetAction.kt # Add globally unique code snippet
+│   │   │   │   ├── AddCommentAction.kt           # Add comment
+│   │   │   │   ├── AddGroupAction.kt              # Add group
+│   │   │   │   ├── DeleteReferenceAction.kt       # Delete reference
+│   │   │   │   ├── EditReferenceTitleAction.kt   # Edit reference title
+│   │   │   │   ├── RefreshReferencesAction.kt    # Refresh references
+│   │   │   │   └── ShowStorageLocationAction.kt   # Show storage location
+│   │   │   ├── model/            # Data models
+│   │   │   │   ├── ReferenceItem.kt    # Reference item data model
+│   │   │   │   └── ReferenceGroup.kt   # Group data model
+│   │   │   ├── services/         # Service layer
+│   │   │   │   └── ReferenceDataService.kt  # Reference data management service
+│   │   │   ├── ui/               # UI components
+│   │   │   │   └── ReferenceListPanel.kt     # Reference list panel
+│   │   │   ├── toolWindow/       # Tool window
+│   │   │   │   └── MyToolWindowFactory.kt    # Tool window factory
+│   │   │   ├── utils/            # Utility classes
+│   │   │   │   ├── NotificationUtils.kt      # Notification utilities
+│   │   │   │   └── ReferenceNavigationUtils.kt # Navigation utilities
+│   │   │   ├── MyBundle.kt       # Internationalization support
+│   │   │   └── UriHandler.kt     # URI handler
 │   │   └── resources/
 │   │       ├── META-INF/
-│   │       │   └── plugin.xml     # 插件配置文件
+│   │       │   └── plugin.xml     # Plugin configuration file
 │   │       └── messages/
-│   │           └── MyBundle.properties  # 国际化资源文件
-│   └── test/                      # 测试代码
+│   │           └── MyBundle.properties  # Internationalization resource file
+│   └── test/                      # Test code
 │       └── kotlin/
-├── build.gradle.kts               # Gradle 构建配置
-├── gradle.properties             # Gradle 属性配置
-├── settings.gradle.kts           # Gradle 项目设置
-└── README.md                      # 项目说明文档
+├── build.gradle.kts               # Gradle build configuration
+├── gradle.properties             # Gradle properties configuration
+├── settings.gradle.kts           # Gradle project settings
+└── README.md                      # Project documentation
 ```
 
-## 核心模块说明
+## Core Module Overview
 
-### 1. 数据模型 (model/)
+### 1. Data Models (model/)
 
 #### ReferenceItem.kt
-定义引用项的数据结构，包括：
-- `id`: 唯一标识符
-- `title`: 显示标题
-- `type`: 引用类型（FILE, FILE_SNIPPET, GLOBAL_SNIPPET, COMMENT）
-- `filePath`: 文件路径
-- `snippet`: 代码片段
-- `groupId`: 所属分组ID
+Defines the data structure for reference items, including:
+- `id`: Unique identifier
+- `title`: Display title
+- `type`: Reference type (FILE, FILE_SNIPPET, GLOBAL_SNIPPET, COMMENT)
+- `filePath`: File path
+- `snippet`: Code snippet
+- `groupId`: Group ID
 
 #### ReferenceGroup.kt
-定义分组的数据结构，包括：
-- `id`: 唯一标识符
-- `name`: 分组名称
+Defines the data structure for groups, including:
+- `id`: Unique identifier
+- `name`: Group name
 
-### 2. 服务层 (services/)
+### 2. Service Layer (services/)
 
 #### ReferenceDataService.kt
-核心数据管理服务，负责：
-- 加载和保存引用数据（JSON 格式）
-- 添加、删除、更新引用项和分组
-- 管理存储路径（基于项目路径的 MD5 哈希）
-- 延迟加载机制（仅在工具窗口显示时加载数据）
+Core data management service responsible for:
+- Loading and saving reference data (JSON format)
+- Adding, deleting, updating reference items and groups
+- Managing storage paths (based on MD5 hash of project path)
+- Lazy loading mechanism (only loads data when tool window is shown)
 
-**关键方法：**
-- `getReferences()`: 获取所有引用项
-- `getGroups()`: 获取所有分组
-- `addReference()`: 添加引用项
-- `deleteReference()`: 删除引用项
-- `updateReferenceTitle()`: 更新引用项标题
-- `addGroup()`: 添加分组
-- `deleteGroup()`: 删除分组
-- `saveReferences()`: 保存数据到文件
+**Key methods:**
+- `getReferences()`: Get all reference items
+- `getGroups()`: Get all groups
+- `addReference()`: Add reference item
+- `deleteReference()`: Delete reference item
+- `updateReferenceTitle()`: Update reference item title
+- `addGroup()`: Add group
+- `deleteGroup()`: Delete group
+- `saveReferences()`: Save data to file
 
-### 3. UI 组件 (ui/)
+### 3. UI Components (ui/)
 
 #### ReferenceListPanel.kt
-工具窗口的主面板，负责：
-- 显示引用项和分组列表
-- 处理拖拽排序
-- 处理点击事件（跳转到代码位置）
-- 处理右键菜单
-- 渲染不同类型的引用项（不同背景色和前景色）
-- 显示空状态
-- 显示存储位置按钮
+Main panel of the tool window, responsible for:
+- Displaying reference items and group lists
+- Handling drag-and-drop sorting
+- Handling click events (navigating to code locations)
+- Handling right-click context menus
+- Rendering different types of reference items (different background and foreground colors)
+- Displaying empty state
+- Showing storage location button
 
-**关键特性：**
-- 自适应宽度（无滚动条）
-- 根据背景色自动调整前景色（深色主题用白色，浅色主题用黑色）
-- 支持分组折叠/展开
-- 支持拖拽排序
+**Key features:**
+- Adaptive width (no scrollbars)
+- Automatic foreground color adjustment based on background color (white for dark themes, black for light themes)
+- Support for group collapse/expand
+- Support for drag-and-drop sorting
 
-### 4. 动作 (actions/)
+### 4. Actions (actions/)
 
-所有用户操作都通过 Action 实现：
+All user operations are implemented through Actions:
 
-- **AddCurrentFileAction**: 添加当前打开的文件
-- **AddFileAndSnippetAction**: 添加当前文件和选中的代码片段
-- **AddGlobalUniqueSnippetAction**: 添加全局唯一的代码片段（自动搜索项目确保唯一性）
-- **AddCommentAction**: 添加用户注释
-- **AddGroupAction**: 创建新分组
-- **DeleteReferenceAction**: 删除引用项
-- **EditReferenceTitleAction**: 编辑引用项标题
-- **RefreshReferencesAction**: 刷新引用列表
-- **ShowStorageLocationAction**: 显示存储文件位置
+- **AddCurrentFileAction**: Add currently opened file
+- **AddFileAndSnippetAction**: Add current file and selected code snippet
+- **AddGlobalUniqueSnippetAction**: Add globally unique code snippet (automatically searches project to ensure uniqueness)
+- **AddCommentAction**: Add user comment
+- **AddGroupAction**: Create new group
+- **DeleteReferenceAction**: Delete reference item
+- **EditReferenceTitleAction**: Edit reference item title
+- **RefreshReferencesAction**: Refresh reference list
+- **ShowStorageLocationAction**: Show storage file location
 
-### 5. 工具窗口 (toolWindow/)
+### 5. Tool Window (toolWindow/)
 
 #### MyToolWindowFactory.kt
-负责创建和管理工具窗口：
-- 创建工具窗口内容
-- 注册标题栏动作（刷新按钮）
-- 监听工具窗口显示事件，触发延迟加载
+Responsible for creating and managing the tool window:
+- Creating tool window content
+- Registering toolbar actions (refresh button)
+- Listening for tool window display events, triggering lazy loading
 
-### 6. 工具类 (utils/)
+### 6. Utility Classes (utils/)
 
 #### NotificationUtils.kt
-提供非阻塞通知功能：
-- `showInfo()`: 显示信息通知
-- `showWarning()`: 显示警告通知
-- `showError()`: 显示错误通知
+Provides non-blocking notification functionality:
+- `showInfo()`: Show information notification
+- `showWarning()`: Show warning notification
+- `showError()`: Show error notification
 
 #### ReferenceNavigationUtils.kt
-提供代码导航功能：
-- `navigateToReference()`: 导航到引用项对应的代码位置
-- 自动选择代码片段（如果存在）
+Provides code navigation functionality:
+- `navigateToReference()`: Navigate to the code location corresponding to the reference item
+- Automatically select code snippet (if exists)
 
-## 开发流程
+## Development Workflow
 
-### 1. 创建功能分支
+### 1. Create Feature Branch
 
 ```bash
 git checkout -b feature/your-feature-name
 ```
 
-### 2. 开发新功能
+### 2. Develop New Feature
 
-1. **修改代码**
-   - 根据功能需求修改相应模块
-   - 遵循代码规范（见下文）
+1. **Modify code**
+   - Modify corresponding modules based on feature requirements
+   - Follow code standards (see below)
 
-2. **添加测试**
-   - 为新功能添加单元测试
-   - 确保测试通过
+2. **Add tests**
+   - Add unit tests for new features
+   - Ensure tests pass
 
-3. **测试功能**
+3. **Test functionality**
    ```bash
-   # 运行插件进行测试
+   # Run plugin for testing
    ./gradlew runIde
    ```
 
-4. **提交代码**
+4. **Commit code**
    ```bash
    git add .
-   git commit -m "feat: 添加新功能描述"
+   git commit -m "feat: add new feature description"
    ```
 
-### 3. 提交 Pull Request
+### 3. Submit Pull Request
 
-1. 推送分支到远程仓库
-2. 在 GitHub 上创建 Pull Request
-3. 等待代码审查
-4. 根据反馈修改代码
+1. Push branch to remote repository
+2. Create Pull Request on GitHub
+3. Wait for code review
+4. Modify code based on feedback
 
-## 如何添加新功能
+## How to Add New Features
 
-### 示例：添加新的引用类型
+### Example: Adding New Reference Type
 
-1. **修改数据模型**
+1. **Modify data model**
    
-   在 `ReferenceItem.kt` 中的 `ReferenceType` 枚举中添加新类型：
+   Add new type to the `ReferenceType` enum in `ReferenceItem.kt`:
    ```kotlin
    enum class ReferenceType {
        FILE,
        FILE_SNIPPET,
        GLOBAL_SNIPPET,
        COMMENT,
-       NEW_TYPE  // 新类型
+       NEW_TYPE  // New type
    }
    ```
 
-2. **修改 UI 渲染**
+2. **Modify UI rendering**
    
-   在 `ReferenceListPanel.kt` 的 `ReferenceListCellRenderer` 中添加新类型的渲染逻辑：
+   Add rendering logic for the new type in `ReferenceListPanel.kt`'s `ReferenceListCellRenderer`:
    ```kotlin
    ReferenceType.NEW_TYPE -> {
        if (!isSelected) {
@@ -252,44 +252,44 @@ git checkout -b feature/your-feature-name
    }
    ```
 
-3. **添加对应的 Action**
+3. **Add corresponding Action**
    
-   创建新的 Action 类，例如 `AddNewTypeAction.kt`：
+   Create new Action class, e.g., `AddNewTypeAction.kt`:
    ```kotlin
    class AddNewTypeAction : AnAction() {
        override fun actionPerformed(e: AnActionEvent) {
-           // 实现添加逻辑
+           // Implement add logic
        }
    }
    ```
 
-4. **注册 Action**
+4. **Register Action**
    
-   在 `plugin.xml` 中注册新 Action：
+   Register new Action in `plugin.xml`:
    ```xml
    <action id="FileRefTags.AddNewType" 
            class="org.jetbrains.plugins.template.actions.AddNewTypeAction"
-           text="添加新类型">
+           text="Add New Type">
        <add-to-group group-id="FileRefTags.EditorPopupMenu" anchor="first"/>
    </action>
    ```
 
-5. **添加国际化文本**
+5. **Add internationalization text**
    
-   在 `MyBundle.properties` 中添加文本：
+   Add text in `MyBundle.properties`:
    ```properties
-   action.addNewType.text=添加新类型
+   action.addNewType.text=Add New Type
    ```
 
-### 示例：添加新的工具窗口按钮
+### Example: Adding New Tool Window Button
 
-1. **创建 Action**
+1. **Create Action**
    
-   创建新的 Action 类，例如 `NewToolbarAction.kt`
+   Create new Action class, e.g., `NewToolbarAction.kt`
 
-2. **注册到工具栏**
+2. **Register to toolbar**
    
-   在 `plugin.xml` 中注册：
+   Register in `plugin.xml`:
    ```xml
    <action id="FileRefTags.NewToolbarAction" 
            class="org.jetbrains.plugins.template.actions.NewToolbarAction"
@@ -298,39 +298,39 @@ git checkout -b feature/your-feature-name
    </action>
    ```
 
-## 代码规范
+## Code Standards
 
-### Kotlin 代码规范
+### Kotlin Code Standards
 
-1. **命名规范**
-   - 类名：大驼峰（PascalCase），如 `ReferenceItem`
-   - 函数名：小驼峰（camelCase），如 `getReferences()`
-   - 常量：大写下划线分隔，如 `MAX_SIZE`
-   - 私有属性：小驼峰，如 `private val dataService`
+1. **Naming conventions**
+   - Class names: PascalCase, e.g., `ReferenceItem`
+   - Function names: camelCase, e.g., `getReferences()`
+   - Constants: UPPER_SNAKE_CASE, e.g., `MAX_SIZE`
+   - Private properties: camelCase, e.g., `private val dataService`
 
-2. **代码格式**
-   - 使用 4 个空格缩进（不是 Tab）
-   - 行长度不超过 120 个字符
-   - 函数参数过多时换行对齐
+2. **Code formatting**
+   - Use 4 spaces for indentation (not tabs)
+   - Line length should not exceed 120 characters
+   - Break and align function parameters when there are too many
 
-3. **注释规范**
-   - 公共 API 必须添加 KDoc 注释
-   - 复杂逻辑添加行内注释说明
-   - 使用中文注释（项目统一使用中文）
+3. **Comment standards**
+   - Public APIs must have KDoc comments
+   - Add inline comments for complex logic
+   - Use Chinese comments (project uses Chinese uniformly)
 
-4. **异常处理**
-   - 使用 try-catch 捕获异常
-   - 使用 `NotificationUtils` 向用户显示错误信息
-   - 记录错误日志（如需要）
+4. **Exception handling**
+   - Use try-catch to catch exceptions
+   - Use `NotificationUtils` to display error messages to users
+   - Log error messages (if needed)
 
-### 示例代码
+### Example Code
 
 ```kotlin
 /**
- * 添加新的引用项
+ * Add new reference item
  * 
- * @param item 要添加的引用项
- * @return 是否添加成功
+ * @param item Reference item to add
+ * @return Whether the addition was successful
  */
 fun addReference(item: ReferenceItem): Boolean {
     return try {
@@ -340,187 +340,187 @@ fun addReference(item: ReferenceItem): Boolean {
     } catch (e: Exception) {
         NotificationUtils.showError(
             project,
-            "添加失败",
-            "无法添加引用项: ${e.message}"
+            "Add failed",
+            "Cannot add reference item: ${e.message}"
         )
         false
     }
 }
 ```
 
-## 测试
+## Testing
 
-### 运行测试
+### Running Tests
 
 ```bash
-# 运行所有测试
+# Run all tests
 ./gradlew test
 
-# 运行特定测试类
+# Run specific test class
 ./gradlew test --tests "org.jetbrains.plugins.template.services.ReferenceDataServiceTest"
 ```
 
-### 编写测试
+### Writing Tests
 
-测试文件应放在 `src/test/kotlin/` 目录下，示例：
+Test files should be placed in the `src/test/kotlin/` directory, example:
 
 ```kotlin
 class ReferenceDataServiceTest {
     @Test
     fun testAddReference() {
-        // 测试代码
+        // Test code
     }
 }
 ```
 
-### 手动测试
+### Manual Testing
 
-1. 运行插件：
+1. Run the plugin:
    ```bash
    ./gradlew runIde
    ```
 
-2. 在打开的 IDE 中测试功能：
-   - 打开工具窗口
-   - 测试各种操作
-   - 检查数据是否正确保存
+2. Test functionality in the opened IDE:
+   - Open tool window
+   - Test various operations
+   - Check if data is saved correctly
 
-## 构建和打包
+## Building and Packaging
 
-### 构建插件
+### Building Plugin
 
 ```bash
-# 构建插件（生成 ZIP 文件）
+# Build plugin (generates ZIP file)
 ./gradlew buildPlugin
 
-# 构建产物位置
+# Build artifact location
 # build/distributions/File Ref Tags-1.0.0.zip
 ```
 
-### 验证插件
+### Verifying Plugin
 
 ```bash
-# 验证插件兼容性
+# Verify plugin compatibility
 ./gradlew verifyPlugin
 ```
 
-### 本地安装测试
+### Local Installation Testing
 
-1. 构建插件：`./gradlew buildPlugin`
-2. 在 IntelliJ IDEA 中：
+1. Build plugin: `./gradlew buildPlugin`
+2. In IntelliJ IDEA:
    - **File** → **Settings** → **Plugins**
-   - 点击齿轮图标 → **Install Plugin from Disk...**
-   - 选择 `build/distributions/File Ref Tags-1.0.0.zip`
-   - 重启 IDE
+   - Click gear icon → **Install Plugin from Disk...**
+   - Select `build/distributions/File Ref Tags-1.0.0.zip`
+   - Restart IDE
 
-## 常见问题
+## Frequently Asked Questions
 
-### Q: 如何调试插件？
-
-A: 
-1. 在代码中设置断点
-2. 运行 `./gradlew runIde --debug-jvm`
-3. 在 IntelliJ IDEA 中附加调试器（端口 5005）
-
-或者使用 IntelliJ IDEA 的 Run Configuration：
-1. 创建新的 "Gradle" 运行配置
-2. 任务：`runIde`
-3. 使用 Debug 模式运行
-
-### Q: 如何查看插件日志？
+### Q: How to debug the plugin?
 
 A: 
-- 运行 `./gradlew runIde` 时，日志会输出到控制台
-- 在沙盒 IDE 中：**Help** → **Show Log in Files**
-- 日志位置：`build/idea-sandbox/IC-2024.1/log/idea.log`
+1. Set breakpoints in code
+2. Run `./gradlew runIde --debug-jvm`
+3. Attach debugger in IntelliJ IDEA (port 5005)
 
-### Q: 如何修改插件版本？
+Or use IntelliJ IDEA's Run Configuration:
+1. Create new "Gradle" run configuration
+2. Task: `runIde`
+3. Run in Debug mode
+
+### Q: How to view plugin logs?
 
 A: 
-在 `gradle.properties` 中修改 `pluginVersion` 属性：
+- When running `./gradlew runIde`, logs are output to console
+- In sandbox IDE: **Help** → **Show Log in Files**
+- Log location: `build/idea-sandbox/IC-2024.1/log/idea.log`
+
+### Q: How to modify plugin version?
+
+A: 
+Modify the `pluginVersion` property in `gradle.properties`:
 ```properties
 pluginVersion=1.0.1
 ```
 
-### Q: 如何添加新的依赖？
+### Q: How to add new dependencies?
 
 A: 
-在 `build.gradle.kts` 的 `dependencies` 块中添加：
+Add in the `dependencies` block in `build.gradle.kts`:
 ```kotlin
 dependencies {
     implementation("com.example:library:1.0.0")
 }
 ```
 
-### Q: 插件无法加载怎么办？
+### Q: What to do if the plugin fails to load?
 
 A: 
-1. 检查 `plugin.xml` 配置是否正确
-2. 检查是否有编译错误：`./gradlew build`
-3. 查看日志文件中的错误信息
-4. 确保 IntelliJ Platform 版本兼容
+1. Check if `plugin.xml` configuration is correct
+2. Check for compilation errors: `./gradlew build`
+3. Check error messages in log files
+4. Ensure IntelliJ Platform version compatibility
 
-### Q: 如何实现国际化？
+### Q: How to implement internationalization?
 
 A: 
-1. 在 `MyBundle.properties` 中添加键值对：
+1. Add key-value pairs in `MyBundle.properties`:
    ```properties
-   my.key=我的文本
+   my.key=My text
    ```
-2. 在代码中使用：
+2. Use in code:
    ```kotlin
    MyBundle.message("my.key")
    ```
-3. 支持多语言：创建 `MyBundle_zh_CN.properties` 等文件
+3. Support multiple languages: create `MyBundle_zh_CN.properties` and other files
 
-### Q: 如何调试 UI 问题？
+### Q: How to debug UI issues?
 
 A: 
-1. 使用 IntelliJ IDEA 的 UI Inspector（在运行插件时）
-2. 添加日志输出查看组件状态
-3. 使用断点检查组件属性
+1. Use IntelliJ IDEA's UI Inspector (while running the plugin)
+2. Add log output to check component state
+3. Use breakpoints to check component properties
 
-## 贡献指南
+## Contribution Guidelines
 
-### 提交代码前检查清单
+### Pre-commit Checklist
 
-- [ ] 代码遵循项目代码规范
-- [ ] 所有测试通过
-- [ ] 添加了必要的注释和文档
-- [ ] 更新了相关文档（如 README）
-- [ ] 提交信息清晰明确
+- [ ] Code follows project code standards
+- [ ] All tests pass
+- [ ] Added necessary comments and documentation
+- [ ] Updated relevant documentation (e.g., README)
+- [ ] Commit message is clear and descriptive
 
-### 提交信息格式
+### Commit Message Format
 
-使用约定式提交格式：
-- `feat:` 新功能
-- `fix:` 修复 bug
-- `docs:` 文档更新
-- `style:` 代码格式调整
-- `refactor:` 代码重构
-- `test:` 测试相关
-- `chore:` 构建/工具相关
+Use conventional commit format:
+- `feat:` New feature
+- `fix:` Bug fix
+- `docs:` Documentation update
+- `style:` Code formatting changes
+- `refactor:` Code refactoring
+- `test:` Test related
+- `chore:` Build/tool related
 
-示例：
+Examples:
 ```
-feat: 添加新的引用类型支持
-fix: 修复拖拽排序时的索引错误
-docs: 更新开发文档
+feat: Add support for new reference types
+fix: Fix index error during drag-and-drop sorting
+docs: Update development documentation
 ```
 
-### Pull Request 要求
+### Pull Request Requirements
 
-1. **描述清晰**：说明修改内容和原因
-2. **关联 Issue**：如果修复了 Issue，在 PR 描述中关联
-3. **测试充分**：确保新功能经过充分测试
-4. **代码审查**：等待维护者审查通过后再合并
+1. **Clear description**: Explain what was changed and why
+2. **Issue association**: If fixing an issue, reference it in the PR description
+3. **Adequate testing**: Ensure new features are thoroughly tested
+4. **Code review**: Wait for maintainer review before merging
 
-## 获取帮助
+## Getting Help
 
-- **GitHub Issues**: 提交问题或功能请求
-- **讨论区**: 在 GitHub Discussions 中讨论
-- **文档**: 查看 [IntelliJ Platform SDK 文档](https://plugins.jetbrains.com/docs/intellij/)
+- **GitHub Issues**: Submit issues or feature requests
+- **Discussions**: Discuss in GitHub Discussions
+- **Documentation**: View [IntelliJ Platform SDK Documentation](https://plugins.jetbrains.com/docs/intellij/)
 
 ---
 
-**感谢你的贡献！** 🎉
+**Thank you for your contribution!** 🎉
