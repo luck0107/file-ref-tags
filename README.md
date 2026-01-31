@@ -1,6 +1,6 @@
 # File Ref Tags - JetBrains IDE Code Reference Management Plugin
 
-[ä¸­æ–‡æ–‡æ¡£](README_zh.md)
+[ÖÐÎÄÎÄµµ](README_zh.md)
 
 <!-- Plugin description -->
 **File Ref Tags** is a JetBrains IDE plugin for managing and quickly accessing code references. It allows users to add files, code snippets, and comments to a reference panel, enabling fast navigation to corresponding locations and improving development efficiency for large projects.
@@ -46,7 +46,7 @@ File Ref Tags is a JetBrains IDE plugin that helps developers manage and quickly
 ### From JetBrains Plugin Repository
 
 1. Open your JetBrains IDE (IntelliJ IDEA, WebStorm, PyCharm, etc.)
-2. Go to **File** â†’ **Settings** (or **Preferences** on macOS)
+2. Go to **File** ¡ú **Settings** (or **Preferences** on macOS)
 3. Navigate to **Plugins**
 4. Click **Marketplace** tab
 5. Search for "File Ref Tags"
@@ -56,8 +56,8 @@ File Ref Tags is a JetBrains IDE plugin that helps developers manage and quickly
 ### Manual Installation
 
 1. Download the plugin ZIP file from the releases page
-2. Go to **File** â†’ **Settings** â†’ **Plugins**
-3. Click the gear icon â†’ **Install Plugin from Disk...**
+2. Go to **File** ¡ú **Settings** ¡ú **Plugins**
+3. Click the gear icon ¡ú **Install Plugin from Disk...**
 4. Select the downloaded ZIP file
 5. Restart the IDE
 
@@ -65,32 +65,32 @@ File Ref Tags is a JetBrains IDE plugin that helps developers manage and quickly
 
 ### 1. Open Reference Panel
 
-Go to **View** â†’ **Tool Windows** â†’ **File Ref Tags**, or use the tool window button in the IDE's tool window bar to open the reference panel.
+Go to **View** ¡ú **Tool Windows** ¡ú **File Ref Tags**, or use the tool window button in the IDE's tool window bar to open the reference panel.
 
 ### 2. Add Reference Items
 
 #### 2.1 Add Current File
 
 - Open the file you want to add
-- Right-click in the editor, select **FileRefTags** â†’ **Add Current File to Panel**
+- Right-click in the editor, select **FileRefTags** ¡ú **Add Current File to Panel**
 - Or use Find Action (`Ctrl+Shift+A` / `Cmd+Shift+A`) and search for "Add Current File to Panel"
 
 #### 2.2 Add Current File + Selected Snippet
 
 - Open a file and select the code snippet you want to add
-- Right-click in the editor, select **FileRefTags** â†’ **Add Current File + Selected Snippet to Panel**
+- Right-click in the editor, select **FileRefTags** ¡ú **Add Current File + Selected Snippet to Panel**
 - Or use Find Action (`Ctrl+Shift+A` / `Cmd+Shift+A`) and search for "Add Current File + Selected Snippet to Panel"
 
 #### 2.3 Add Selected Globally Unique Snippet
 
 - Open a file and select the code snippet you want to add
-- Right-click in the editor, select **FileRefTags** â†’ **Add Current Selected Globally Unique Snippet to Panel**
+- Right-click in the editor, select **FileRefTags** ¡ú **Add Current Selected Globally Unique Snippet to Panel**
 - Or use Find Action (`Ctrl+Shift+A` / `Cmd+Shift+A`) and search for "Add Current Selected Globally Unique Snippet to Panel"
 - The plugin will automatically search the project to ensure the snippet is unique
 
 #### 2.4 Add User Comment
 
-- Right-click in the editor, select **FileRefTags** â†’ **Add User Comment to Panel**
+- Right-click in the editor, select **FileRefTags** ¡ú **Add User Comment to Panel**
 - Or use Find Action (`Ctrl+Shift+A` / `Cmd+Shift+A`) and search for "Add User Comment to Panel"
 - Enter the comment content in the popup input box and click OK
 
@@ -139,7 +139,7 @@ Go to **View** â†’ **Tool Windows** â†’ **File Ref Tags**, or use the tool windo
 ##### 3.5.3 Expand/Collapse Groups
 
 - Click on a group header to expand or collapse the group
-- Collapsed groups show a "â–¶" icon, expanded groups show a "â–¼" icon
+- Collapsed groups show a "?" icon, expanded groups show a "¨‹" icon
 
 ##### 3.5.4 Reorder Groups
 
@@ -148,7 +148,7 @@ Go to **View** â†’ **Tool Windows** â†’ **File Ref Tags**, or use the tool windo
 
 #### 3.6 Refresh References
 
-- Click the **Refresh** button (ðŸ”„ icon) in the tool window title bar (next to the gear icon)
+- Click the **Refresh** button (? icon) in the tool window title bar (next to the gear icon)
 - The plugin will reload reference data from the storage file
 - Useful when you've modified the storage file externally
 - A message will show the number of references and groups loaded after refresh
@@ -167,13 +167,13 @@ The plugin uses a multi-project storage architecture. Each project has its own i
 
 ```
 ~/.file-ref-tags/
-â”œâ”€â”€ projects.json          # Project path to folder mapping
-â”œâ”€â”€ <hash1>/              # Project 1 storage folder (MD5 hash of project path)
-â”‚   â””â”€â”€ references.json   # Project 1 reference data
-â”œâ”€â”€ <hash2>/              # Project 2 storage folder
-â”‚   â””â”€â”€ references.json   # Project 2 reference data
-â””â”€â”€ default/              # Default folder for projects without path
-    â””â”€â”€ references.json
+©À©¤©¤ projects.json          # Project path to folder mapping
+©À©¤©¤ <hash1>/              # Project 1 storage folder (MD5 hash of project path)
+©¦   ©¸©¤©¤ references.json   # Project 1 reference data
+©À©¤©¤ <hash2>/              # Project 2 storage folder
+©¦   ©¸©¤©¤ references.json   # Project 2 reference data
+©¸©¤©¤ default/              # Default folder for projects without path
+    ©¸©¤©¤ references.json
 ```
 
 ### Storage Location
@@ -203,7 +203,7 @@ The storage location for the current project can be viewed through the "Show Sto
 
 This project is built using the [IntelliJ Platform Plugin Template][gh:template]. 
 
-**For detailed development documentation, please see [DEVELOPMENT.md](DEVELOPMENT.md) (English) or [DEVELOPMENT_zh.md](DEVELOPMENT_zh.md) (ä¸­æ–‡).**
+**For detailed development documentation, please see [DEVELOPMENT.md](DEVELOPMENT.md) (English) or [DEVELOPMENT_zh.md](DEVELOPMENT_zh.md) (ÖÐÎÄ).**
 
 For quick start, see the sections below.
 
@@ -211,7 +211,7 @@ For quick start, see the sections below.
 
 1. Clone this repository
 2. Open the project in IntelliJ IDEA
-3. Set the SDK to Java 21 in **File** â†’ **Project Structure** â†’ **Project Settings** â†’ **Project**
+3. Set the SDK to Java 21 in **File** ¡ú **Project Structure** ¡ú **Project Settings** ¡ú **Project**
 4. Review and update configuration in `gradle.properties`
 5. Run `./gradlew buildPlugin` to build the plugin
 6. Run `./gradlew runIde` to test the plugin in a sandbox IDE instance
@@ -236,32 +236,32 @@ Key Gradle properties in `gradle.properties`:
 
 ```
 .
-â”œâ”€â”€ .github/                GitHub Actions workflows
-â”œâ”€â”€ .run/                   Predefined Run/Debug Configurations
-â”œâ”€â”€ gradle
-â”‚   â”œâ”€â”€ wrapper/            Gradle Wrapper
-â”‚   â””â”€â”€ libs.versions.toml  Gradle version catalog
-â”œâ”€â”€ src                     Plugin sources
-â”‚   â”œâ”€â”€ main
-â”‚   â”‚   â”œâ”€â”€ kotlin/         Kotlin production sources
-â”‚   â”‚   â”‚   â””â”€â”€ org/jetbrains/plugins/template/
-â”‚   â”‚   â”‚       â”œâ”€â”€ model/          Data models (ReferenceItem, ReferenceGroup)
-â”‚   â”‚   â”‚       â”œâ”€â”€ services/       Services (ReferenceDataService)
-â”‚   â”‚   â”‚       â”œâ”€â”€ ui/             UI components (ReferenceListPanel)
-â”‚   â”‚   â”‚       â”œâ”€â”€ actions/       Actions (AddCurrentFileAction, etc.)
-â”‚   â”‚   â”‚       â””â”€â”€ toolWindow/    Tool window factory
-â”‚   â”‚   â””â”€â”€ resources/      Resources - plugin.xml, icons, messages
-â”‚   â””â”€â”€ test
-â”‚       â”œâ”€â”€ kotlin/         Kotlin test sources
-â”‚       â””â”€â”€ testData/       Test data used by tests
-â”œâ”€â”€ build.gradle.kts        Gradle configuration
-â”œâ”€â”€ CHANGELOG.md            Full change history
-â”œâ”€â”€ gradle.properties       Gradle configuration properties
-â”œâ”€â”€ gradlew                 *nix Gradle Wrapper script
-â”œâ”€â”€ gradlew.bat             Windows Gradle Wrapper script
-â”œâ”€â”€ LICENSE                 License, MIT by default
-â”œâ”€â”€ qodana.yml              Qodana configuration file
-â””â”€â”€ settings.gradle.kts     Gradle project settings
+©À©¤©¤ .github/                GitHub Actions workflows
+©À©¤©¤ .run/                   Predefined Run/Debug Configurations
+©À©¤©¤ gradle
+©¦   ©À©¤©¤ wrapper/            Gradle Wrapper
+©¦   ©¸©¤©¤ libs.versions.toml  Gradle version catalog
+©À©¤©¤ src                     Plugin sources
+©¦   ©À©¤©¤ main
+©¦   ©¦   ©À©¤©¤ kotlin/         Kotlin production sources
+©¦   ©¦   ©¦   ©¸©¤©¤ org/jetbrains/plugins/template/
+©¦   ©¦   ©¦       ©À©¤©¤ model/          Data models (ReferenceItem, ReferenceGroup)
+©¦   ©¦   ©¦       ©À©¤©¤ services/       Services (ReferenceDataService)
+©¦   ©¦   ©¦       ©À©¤©¤ ui/             UI components (ReferenceListPanel)
+©¦   ©¦   ©¦       ©À©¤©¤ actions/       Actions (AddCurrentFileAction, etc.)
+©¦   ©¦   ©¦       ©¸©¤©¤ toolWindow/    Tool window factory
+©¦   ©¦   ©¸©¤©¤ resources/      Resources - plugin.xml, icons, messages
+©¦   ©¸©¤©¤ test
+©¦       ©À©¤©¤ kotlin/         Kotlin test sources
+©¦       ©¸©¤©¤ testData/       Test data used by tests
+©À©¤©¤ build.gradle.kts        Gradle configuration
+©À©¤©¤ CHANGELOG.md            Full change history
+©À©¤©¤ gradle.properties       Gradle configuration properties
+©À©¤©¤ gradlew                 *nix Gradle Wrapper script
+©À©¤©¤ gradlew.bat             Windows Gradle Wrapper script
+©À©¤©¤ LICENSE                 License, MIT by default
+©À©¤©¤ qodana.yml              Qodana configuration file
+©¸©¤©¤ settings.gradle.kts     Gradle project settings
 ```
 
 ### Building the Plugin
