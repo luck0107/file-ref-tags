@@ -1,0 +1,43 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <id>lirentech.file-ref-tags</id>
+    <name>File Ref Tags</name>
+    <vendor>LiRenTech</vendor>
+    <description><![CDATA[
+    File Ref Tags is a powerful plugin for managing and quickly accessing code references.
+    It allows you to add files, code snippets, and comments to a reference panel for quick navigation.
+    ]]></description>
+    <version>1.0.0</version>
+    <idea-version since-build="231" until-build="241.*"/>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <resource-bundle>messages.MyBundle</resource-bundle>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow factoryClass="org.jetbrains.plugins.template.toolWindow.MyToolWindowFactory" id="FileRefTags" displayName="File Ref Tags" anchor="left" icon="/META-INF/icon.svg"/>
+        <notificationGroup id="FileRefTags.NotificationGroup" displayType="BALLOON"/>
+    </extensions>
+
+    <actions>
+        <!-- Editor context menu -->
+        <group id="FileRefTags.EditorContextMenu" text="File Ref Tags" popup="true">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <action id="FileRefTags.AddCurrentFile" class="org.jetbrains.plugins.template.actions.AddCurrentFileAction" text="Add Current File to Panel"/>
+            <action id="FileRefTags.AddFileAndSnippet" class="org.jetbrains.plugins.template.actions.AddFileAndSnippetAction" text="Add Current File + Selected Snippet to Panel"/>
+            <action id="FileRefTags.AddGlobalUniqueSnippet" class="org.jetbrains.plugins.template.actions.AddGlobalUniqueSnippetAction" text="Add Global Unique Snippet to Panel"/>
+            <action id="FileRefTags.AddComment" class="org.jetbrains.plugins.template.actions.AddCommentAction" text="Add Comment to Panel"/>
+        </group>
+        
+        <!-- Tool window title bar actions -->
+        <action id="FileRefTags.TitleActions.Refresh" icon="AllIcons.Actions.Refresh" class="org.jetbrains.plugins.template.actions.RefreshReferencesAction"/>
+        
+        <!-- Tool window toolbar actions -->
+        <group id="FileRefTags.ToolWindowToolbar" text="File Ref Tags" popup="false">
+            <action id="FileRefTags.RefreshReferences" class="org.jetbrains.plugins.template.actions.RefreshReferencesAction" text="Refresh References"/>
+            <separator/>
+            <action id="FileRefTags.AddGroup" class="org.jetbrains.plugins.template.actions.AddGroupAction" text="Add Group"/>
+            <action id="FileRefTags.ShowStorageLocation" class="org.jetbrains.plugins.template.actions.ShowStorageLocationAction" text="Show Storage Location"/>
+        </group>
+    </actions>
+</idea-plugin>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none">
+  <!-- 标签形状 - 使用蓝色填充 -->
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" fill="#4A90E2" stroke="#2E5C8A" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 闪电形状 - 使用黄色填充 -->
+  <path d="M12 2v6l-4 4 4 4v6l8-8-8-8z" fill="#F5A623" stroke="#D68910" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
